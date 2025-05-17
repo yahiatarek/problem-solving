@@ -27,14 +27,15 @@ function canTravelToPoint(points, roads, edges, A, B) {
     if (current === B) return 1
     
   // For each adjacent node of the popped element, if not visited, mark it as visited and push it to the queue
-    adjList[current].forEach(node => {
-      // If the node is not visited, mark it as visited and push it to the queue
-      // This prevents cycles and ensures we don't revisit nodes
-      if (!visited[node]) {
-        visited[node] = true
-        queue.push(node)
-      }
-    });
+    
+  for (let neighbor of adjList[current]) {
+    // If the node is not visited, mark it as visited and push it to the queue
+    // This prevents cycles and ensures we don't revisit nodes
+    if (!visited[neighbor]) {
+      visited[neighbor] = true;
+      queue.push(neighbor);
+    }
+    }
   }
   // If we finish the loop without finding B, return 0 (no path exists)
   return 0
